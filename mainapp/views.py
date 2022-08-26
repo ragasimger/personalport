@@ -2,7 +2,7 @@ from django.http import HttpResponse
 from django.shortcuts import render
 from django.core.mail import send_mail
 from decouple import config
-
+EMAIL_ID = config('EMAIL_ID')
 
 def index(request):
     return render(request, "index.html")
@@ -15,7 +15,7 @@ def contact(request):
     phonenum = request.POST['phonenum']
     subject = request.POST['subject']
     message = request.POST['message']
-    send_mail('New Mail on Portfolio from' + '  ' + name + ' ' + 'on' + ' ' + subject, (((f"His/her email: {emailname}" + "\nPhone Number: " + phonenum) + "\n Message starts from here:\n\n") + message), emailname, [config("EMAIL_ID")], fail_silently=False)
+    send_mail('New Mail on Portfolio from' + '  ' + name + ' ' + 'on' + ' ' + subject, (((f"His/her email: {emailname}" + "\nPhone Number: " + phonenum) + "\n Message starts from here:\n\n") + message), emailname, [EMAIL_ID], fail_silently=False)
 
     params = {'name': name}
     return render(request, 'contact.html', params)
