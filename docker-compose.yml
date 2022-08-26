@@ -7,4 +7,4 @@ services:
     restart: always
     container_name: portfolio
     ports:
-      - "8000:8000"
+      - "3669:3669"
